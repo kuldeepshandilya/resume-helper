@@ -1,0 +1,54 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'org.asciidoctor.convert' version '1.5.8'
+	id 'java'
+}
+
+group = 'com.helper.resume'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+}
+
+dependencies {
+	implementation ('org.springframework.boot:spring-boot-starter-web')
+
+	implementation 'com.google.cloud:google-cloud-speech:1.9.0' //google audio-to-text API
+
+	//  ------ grammar api dependencies start ----
+	implementation 'com.github.sadath42:grammarbot-client:0.0.1'
+	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+	implementation 'org.glassfish.jersey.media:jersey-media-json-jackson:2.16'
+	implementation 'org.glassfish.jersey.inject:jersey-hk2:2.26'
+	//  ------ grammar api dependencies end ----
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+}
+
+test {
+	outputs.dir snippetsDir
+	useJUnitPlatform()
+}
+
+asciidoctor {
+	inputs.dir snippetsDir
+	dependsOn test
+}
