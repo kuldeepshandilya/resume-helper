@@ -30,5 +30,9 @@ To divide the application deliverables into manageable 'working' softwares in pa
   - Too much physical/head movement,
   - Sitting/face posture (is user's face/eyes are straight to camera etc),
   
+  
+ ## Launching service
+ step 1 - export GOOGLE_APPLICATION_CREDENTIALS
+ step 2 - Launch url -  http://localhost:8080/audio/feedback?fileurl=https://resume-helper-bucket.s3.amazonaws.com/Google_Gnome.wav
 
 

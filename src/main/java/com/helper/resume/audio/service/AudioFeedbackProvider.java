@@ -9,7 +9,6 @@ import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
 import com.google.cloud.speech.v1.SpeechRecognitionResult;
 import com.google.protobuf.ByteString;
 import com.grammarbot.client.model.GrammarBotResponse;
-import com.grammarbot.client.model.Replacement;
 import com.grammarbot.client.model.Matches;
 import com.helper.resume.audio.grammar.GrammarUtil;
 import com.helper.resume.audio.response.Feedback;
@@ -30,9 +29,7 @@ public class AudioFeedbackProvider {
   private GrammarUtil grammarUtil;
 
   private byte[] getFileContent(String fileURL) {
-    byte[] content = new RestTemplate().getForObject(fileURL, byte[].class);
-    System.out.println("Inside getFileContent, content: "+content);
-    return content;
+    return  new RestTemplate().getForObject(fileURL, byte[].class);
   }
 
   public  GrammarBotResponse transcribeModelSelectionFromLocalFile(String fileName) throws Exception {
@@ -93,7 +90,6 @@ public class AudioFeedbackProvider {
       // There can be several alternative transcripts for a given chunk of speech. Just use the
       // first (most likely) one here.
       SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
-      System.out.println("speech: "+alternative.getTranscript());
       return processFeedback(grammarUtil.checkGrammar(alternative.getTranscript()));
     }
   }
