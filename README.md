@@ -2,7 +2,7 @@
 App helps create better video resume by providing feedback on your audio and video.
 
 ## Idea/Requirement
-For many job positions, especially the ones which are heavy on communication(say marketing manager, product manager, executives, architects), employers would need video resume for initial screening(and filtering out). As an employer,you would want to 'see' candidate and filter out those candidates who are too bad. Asking for video resume can help in this.
+For many job positions, especially the ones which are heavy on communication(say marketing manager, product manager, executives, architects), employers would need video resume for initial screening(and filtering out). 
 
 This app is to help candidates create a better video resume by providing them with feedback as well as making few changes in the video itself, if asked.
 
